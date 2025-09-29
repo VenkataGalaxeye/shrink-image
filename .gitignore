@@ -1,0 +1,53 @@
+﻿# ---- Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ---- Packaging / distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+
+# ---- Testing & coverage
+.pytest_cache/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+.cache
+
+# ---- Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+*.env
+
+# ---- Type checkers / linters
+.mypy_cache/
+.pytype/
+.pyre/
+ruff_cache/
+
+# ---- Editors / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# ---- OS junk
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---- Jupyter
+.ipynb_checkpoints/
+
+# ---- Logs
+*.log

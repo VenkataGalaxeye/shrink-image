@@ -3,7 +3,7 @@
 
 from pathlib import Path
 import pytest
-from shrink.shrink import enlarge
+from shrink.shrink import shrink
 from PIL import Image
 
 
@@ -18,7 +18,7 @@ def test_shrink_creates_file(tmp_path):
     output_dir = tmp_path / "output"
 
     # Act
-    result = enlarge(str(input_file), str(output_dir))
+    result = shrink(str(input_file), str(output_dir))
 
     # Assert
     result_path = Path(result)
@@ -30,4 +30,4 @@ def test_shrink_creates_file(tmp_path):
 def test_shrink_invalid_file(tmp_path):
     # Act & Assert
     with pytest.raises(ValueError):
-        enlarge(str(tmp_path / "nonexistent.png"), str(tmp_path))
+        shrink(str(tmp_path / "nonexistent.png"), str(tmp_path))

@@ -27,7 +27,7 @@ def test_shrink_creates_file(tmp_path):
     assert str(result_path).endswith("_shrunk.png")
 
 
-def test_enlarge_invalid_file(tmp_path):
+def test_shrink_invalid_file(tmp_path):
     # Act & Assert
     with pytest.raises(ValueError):
         enlarge(str(tmp_path / "nonexistent.png"), str(tmp_path))

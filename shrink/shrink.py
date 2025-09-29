@@ -2,6 +2,7 @@ import os
 from PIL import Image
 import argparse
 
+
 def shrink(image_path: str, output_dir: str = "output", scale: float = 0.5):
     """
     Shrinks an image by a given scale and saves it.
@@ -46,8 +47,12 @@ def main():
     )
     parser.add_argument("image_path", help="Path to the input image")
     parser.add_argument("output_dir", help="Directory to save the shrunk image")
-    parser.add_argument("--scale", type=float, default=0.5,
-                        help="Shrink scale (0.5 = 50% of original size)")
+    parser.add_argument(
+        "--scale",
+        type=float,
+        default=0.5,
+        help="Shrink scale (0.5 = 50% of original size)",
+    )
 
     args = parser.parse_args()
     shrink(args.image_path, args.output_dir, args.scale)

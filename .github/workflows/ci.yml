@@ -1,0 +1,61 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.12, 3.13]  # test multiple Python versions
+
+    steps:
+    # 1️⃣ Checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # 2️⃣ Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    # 3️⃣ Create virtual environment & install dependencies
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install black flake8 pytest pillow
+    
+    - name: Install package in editable mode
+      run: |
+          source venv/bin/activate
+          pip install -e .
+
+
+    # 4️⃣ Check code style with Black
+    - name: Check code style with Black
+      run: |
+        source venv/bin/activate
+        black --check .
+
+    # 5️⃣ Lint code with Flake8
+    - name: Lint code with Flake8
+      run: |
+        source venv/bin/activate
+        flake8 . --exclude=venv,__pycache__,.pytest_cache
+
+    # 6️⃣ Run tests with Pytest
+    - name: Run tests with Pytest
+      run: |
+        source venv/bin/activate
+        pytest -v
